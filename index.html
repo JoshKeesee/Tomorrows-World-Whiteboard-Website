@@ -1,0 +1,145 @@
+<title>Tommorow's World - Whiteboards</title>
+<link href="TWLogo.webp" type="image/x-icon" rel="icon">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<style>
+    body, html {
+        font-family: 'Audiowide', sans-serif;
+        scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+</style>
+<div class="fixed top-0 left-0 right-0 p-4 flex border-b-4 border-red-500 shadow-lg bg-white select-none z-20">
+    <img src="TWIcon.png" class="mx-4" />
+    <h1 class="px-4 border-l-2 border-gray-300 lg:text-6xl font-bold tracking-tighter uppercase lg:block md:block md:text-4xl my-auto hidden">Whiteboards</h1>
+    <div class="flex justify-end w-full">
+        <div class="my-auto cursor-pointer" onclick="menu();">
+            <div id="bar" class="h-2 my-1 w-10 bg-black rounded-xl transition-all"></div>
+            <div id="bar" class="h-2 my-1 w-10 bg-black rounded-xl transition-all"></div>
+            <div id="bar" class="h-2 my-1 w-10 bg-black rounded-xl transition-all"></div>
+        </div>
+    </div>
+    <div id="menu" class="lg:border-l-4 lg:border-t-2 lg:border-b-2 md:border-l-4 md:border-t-2 md:border-b-2 border-l-0 border-t-0 border-b-0 border-red-500 fixed top-0 bottom-0 -right-full lg:w-1/3 md:w-1/2 w-full p-4 bg-gray-500 transition-all lg:rounded-l-3xl md:rounded-l-3xl rounded-l-0 bg-opacity-90">
+        <button onclick="menu();" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="my-6 w-100 grid grid-cols-1 gap-2 justify-center">
+            <a class="text-center bg-white border-b-4 border-red-500 p-2 rounded-xl hover:bg-gray-200 transition-all" href="https://www.lcg.org">LCG Website</a>
+            <a class="text-center bg-white border-b-4 border-red-500 p-2 rounded-xl hover:bg-gray-200 transition-all" href="https://www.tommorowsworld.org">Tommorows World Website</a>
+            <a class="text-center bg-white border-b-4 border-red-500 p-2 rounded-xl hover:bg-gray-200 transition-all" href="https://www.youtube.com/playlist?list=PLbQZYUkAtbYew4QBOBEdc7foJebNMMq6G" target="_blank">Youtube Playlist</a>
+        </div>
+    </div>
+</div>
+<div class="w-100 relative z-0 lg:mt-0 mt-24 transition-all">
+    <img id="background" src="TWBackground.jpg" class="w-100" />
+    <div class="bg-white rounded-full w-28 h-28 mx-auto absolute lg:top-3/4 md:top-1/2 hidden lg:flex md:flex transition-all left-0 right-0 items-center justify-center border-4 border-red-500 shadow-xl">
+        <div onclick="scrollDown()" class="border-r-2 border-t-2 border-black w-16 h-16 transform rotate-[135deg] hover:border-r-4 hover:border-t-4 -mt-6 cursor-pointer rounded-tr-md"></div>
+    </div>
+</div>
+<div id="content" class="select-none font-sans border-t-8 border-blue-500 w-100 px-4 pb-8 relative z-10 bg-white shadow-xl">
+    <div class="absolute left-0 right-0 bg-blue-500 p-8 shadow-md border-b-4 border-blue-600 text-center text-white lg:text-3xl md:text-2xl text-sm font-black">Teaching God's Word through easy-to-understand videos</div>
+    <h1 class="text-4xl my-5 py-2 tracking-tight border-b-4 border-red-500 w-fit pt-24 font-bold">Whiteboard Videos</h1>
+    <div id="videos" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 pb-4"></div>
+    <div id="buttons" class="w-full flex justify-center grid grid-cols-3">
+        <div></div>
+        <button onclick="addVideos();" id="more" class="text-center w-fit mx-auto font-bold bg-gray-300 border-gray-500 border-2 p-2 rounded-xl hover:text-white hover:bg-gray-500 transition-all">
+            <div class="flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+            </div>
+            Show More
+        </button>
+        <div class="w-full flex justify-end">
+            <button onclick="removeVideos();" id="less" class="text-center w-fit hidden font-bold bg-indigo-300 border-indigo-500 border-2 p-2 rounded-xl hover:text-white hover:bg-indigo-500 transition-all">
+                <div class="flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                    </svg>               
+                </div> 
+                Collapse            
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    var menuOpen = 0;
+    var videoInterval = 0;
+    const maxResults = 50;
+    const playlistId = "PLbQZYUkAtbYew4QBOBEdc7foJebNMMq6G";
+    const apiKey = "AIzaSyCPDDlRk7wnRYtaE-dwjb5rX3KuSo70iwU";
+    let videos;
+    let url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet";
+    url += "&maxResults=" + maxResults + "&playlistId=" + playlistId + "&key=" + apiKey;
+    function menu() {
+        if (menuOpen === 0) {
+            document.getElementById("menu").classList.replace("-right-full", "right-0");
+            var menuBars = document.querySelectorAll("#bar");
+            for (i = 0; i < menuBars.length; i++) {
+                menuBars[i].classList.replace("my-1", "my-2");
+            }
+            menuOpen = 1;
+        } else {
+            document.getElementById("menu").classList.replace("right-0", "-right-full");
+            var menuBars = document.querySelectorAll("#bar");
+            for (i = 0; i < menuBars.length; i++) {
+                menuBars[i].classList.replace("my-2", "my-1");
+            }
+            menuOpen = 0;
+        }
+    }
+    function scrollDown() {
+        document.getElementById("content").scrollIntoView(true);
+    }
+    function addVideos() {
+        for (i = 0; i < 3; i++) {
+            if (videos[videoInterval]) {
+                var videoDiv = document.createElement("div");
+                videoDiv.id = "video";
+                videoDiv.className = "w-full h-72 border-2 rounded-md bg-gray-100";
+                document.getElementById("videos").appendChild(videoDiv);
+                var newVideo = document.createElement("object");
+                newVideo.data = 'https://www.youtube.com/embed/' + videos[videoInterval]["snippet"]["resourceId"]["videoId"];
+                newVideo.className = "w-full h-full relative z-10";
+                document.querySelectorAll("#video")[videoInterval].appendChild(newVideo);
+                var loader = document.createElement("div");
+                loader.className = "rounded-full border-8 border-t-red-500 animate-spin w-20 h-20 mx-auto -mt-[40%] relative z-0";
+                document.querySelectorAll("#video")[videoInterval].appendChild(loader);
+                videoInterval++;
+            } else {
+                document.getElementById("more").classList.add("hidden");
+                document.getElementById("buttons").classList.replace("grid-cols-3", "grid-cols-1");
+            }
+        }
+        if (videoInterval > 3) {
+            document.getElementById("more").scrollIntoView(true);
+            document.getElementById("less").classList.remove("hidden");
+        }
+    }
+    function removeVideos() {
+        videoInterval = 0;
+        document.getElementById("videos").innerHTML = "";
+        document.getElementById("buttons").classList.replace("grid-cols-1", "grid-cols-3");
+        addVideos();
+        document.getElementById("more").classList.remove("hidden");
+        document.getElementById("less").classList.add("hidden");
+    }
+    window.addEventListener("scroll", function () {
+        document.getElementById("background").style.transform = "translate3d(0, " + window.scrollY / 2 + "px, 0)";
+    });
+    window.onload = function () {
+        $.ajax({
+            async: false,
+            url: url,
+            success: function (data) {
+                videos = data["items"];
+            }
+        });
+        addVideos();
+    };
+</script>
