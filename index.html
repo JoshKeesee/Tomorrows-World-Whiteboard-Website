@@ -122,10 +122,13 @@
         }
     }
     function removeVideos() {
-        videoInterval = 0;
-        document.getElementById("videos").innerHTML = "";
+        videoInterval = 3;
         document.getElementById("buttons").classList.replace("grid-cols-1", "grid-cols-3");
-        addVideos();
+        var element = document.getElementById("videos");
+        var count = element.childElementCount;
+        for (x = 0; x < count - 3; x++) {
+            element.removeChild(element.lastChild);
+        }
         document.getElementById("more").classList.remove("hidden");
         document.getElementById("less").classList.add("hidden");
     }
